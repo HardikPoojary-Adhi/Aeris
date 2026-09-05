@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AERIS — Locations · Mangaluru Region</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="atmosphere"></div>
+
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <svg class="brand-mark" viewBox="0 0 32 32" fill="none">
+        <circle cx="16" cy="16" r="14.5" stroke="#35D6E5" stroke-width="1.4" opacity="0.35"/>
+        <circle cx="16" cy="16" r="9.5" stroke="#35D6E5" stroke-width="1.4" opacity="0.6"/>
+        <circle cx="16" cy="16" r="3.2" fill="#35D6E5"/>
+      </svg>
+      <span class="brand-text">
+        <span class="brand-name">AERIS</span>
+        <span class="brand-sub">AIR INTELLIGENCE</span>
+      </span>
+    </a>
+
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Overview</a>
+      <a href="locations.html" class="nav-link is-active">Locations</a>
+      <a href="map.html" class="nav-link">Map</a>
+      <a href="devices.html" class="nav-link">Devices</a>
+    </div>
+
+    <div class="nav-meta">
+      <span class="nav-clock"></span>
+      <div class="nav-status-pill">
+        <span class="dot-live"></span>
+        <span class="status-label">All systems normal</span>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="nav-mobile-panel">
+    <div class="nav-mobile-links">
+      <a href="index.html" class="nav-mobile-link">Overview</a>
+      <a href="locations.html" class="nav-mobile-link is-active">Locations</a>
+      <a href="map.html" class="nav-mobile-link">Map</a>
+      <a href="devices.html" class="nav-mobile-link">Devices</a>
+    </div>
+  </div>
+</nav>
+
+<main class="shell">
+
+  <div class="page-head">
+    <div>
+      <div class="region-eyebrow">MANGALURU REGION · 6 LOCATIONS</div>
+      <h1 class="region-title">Locations</h1>
+    </div>
+    <div class="page-head-meta">
+      <div class="freshness">
+        <span class="dot-live"></span>
+        Last synchronized <strong>12s ago</strong>
+      </div>
+    </div>
+  </div>
+
+  <section class="expand-list">
+
+    <div class="card expand-item">
+      <button class="expand-head">
+        <div class="expand-head-left">
+          <div>
+            <div class="location-name">Pilikula</div>
+            <div class="location-sub">6 sensors · updated 2 min ago</div>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <span class="status-chip" style="background: rgba(74,217,145,0.12); color: var(--aqi-good);">
+            <span class="status-chip-dot" style="background: var(--aqi-good);"></span>GOOD
+          </span>
+          <span class="location-aqi">42</span>
+          <svg class="expand-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+      </button>
+      <div class="expand-body">
+        <div class="expand-body-inner">
+          <div class="detail-stat"><span class="detail-stat-label">PM2.5</span><span class="detail-stat-value">14.2 µg/m³</span></div>
+          <div class="detail-stat"><span class="detail-stat-label">PM10</span><span class="detail-stat-value">24.6 µg/m³</span></div>
+          <div class="detail-stat"><span class="detail-stat-label">Temperature</span><span class="detail-stat-value">27.8 °C</span></div>
+          <div class="detail-stat"><span class="detail-stat-label">Humidity</span><span class="detail-stat-value">71 %</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card expand-item">
+      <button class="expand-head">
+        <div class="expand-head-left">
+          <div>
+            <div class="location-name">Kadri</div>
+            <div class="location-sub">5 sensors · updated 1 min ago</div>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <span class="status-chip" style="background: rgba(232,201,74,0.12); color: var(--aqi-moderate);">
+            <span class="status-chip-dot" style="background: var(--aqi-moderate);"></span>MODERATE
+          </span>
+          <span class="location-aqi">71</span>
+          <svg class="expand-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+      </button>
+      <div class="expand-body">
+        <div class="expand-body-inner">
+          <div class="detail-stat"><span class="detail-stat-label">PM2.5</span><span class="detail-stat-value">24.8 µg/m³</span></div>
+          <div class="detail-stat"><span class="detail-stat-label">PM10</span><span class="detail-stat-value">41.2 µg/m³</span></div>
+          <div class="detail-stat"><span class="detail-stat-label">Temperature</span><span class="detail-stat-value">28.9 °C</span></div>
+          <div class="detail-stat"><span class="detail-stat-label">Humidity</span><span class="detail-stat-value">69 %</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card expand-item">
+      <button class="expand-head">
+        <div class="expand-head-left">
+          <div>
+            <div class="location-name">Hampankatta</div>
+            <div class="location-sub">7 sensors · updated 1 min ago</div>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <span class="status-chip" style="background: rgba(232,201,74,0.12); color: var(--aqi-moderate);">
+            <span class="status-chip-dot" style="background: var(--aqi-moderate);"></span>MODERATE
+          </span>
+          <span class="location-aqi">82</span>
+          <svg class="expand-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+      </button>
+      <div class="expand-body">
+        <div class="expand-body-inner">
+          <div class="detail-stat"><span class="detail-stat-label">PM2.5</span><span class="detail-stat-value">31.4 µg/m³</span></div>
+          <div class="detail-stat"><span class="detail-stat-label">PM10</span><span class="detail-stat-value">57.8 µg/m³</span></div>
+          <div class="detail-stat"><span class="detail-stat-label">Temperature</span><span class="detail-stat-value">29.6 °C</span></div>
+          <div class="detail-stat"><span class="detail-stat-label">Humidity</span><span class="detail-stat-value">75 %</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card expand-item">
+      <button class="expand-head">
+        <div class="expand-head-left">
+          <div>
+            <div class="location-name">Kottara</div>
+            <div class="location-sub">5 sensors · updated 3 min ago</div>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <span class="status-chip" style="background: rgba(240,151,61,0.12); color: var(--aqi-sensitive);">
+            <span class="status-chip-dot" style="background: var(--aqi-sensitive);"></span>SENSITIVE
+          </span>
+          <span class="location-aqi">104</span>
+          <svg class="expand-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+      </button>
+      <div class="expand-body">
+        <div class="expand-body-inner">
+          <div class="detail-stat"><span class="detail-stat-label">PM2.5</span><span class="detail-stat-value">39.6 µg/m³</span></div>
+          <div class="detail-stat"><span class="detail-stat-label">PM10</span><span class="detail-stat-value">68.3 µg/m³</span></div>
+          <div class="detail-stat"><span class="detail-stat-label">Temperature</span><span class="detail-stat-value">30.2 °C</span></div>
+          <div class="detail-stat"><span class="detail-stat-label">Humidity</span><span class="detail-stat-value">77 %</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card expand-item">
+      <button class="expand-head">
+        <div class="expand-head-left">
+          <div>
+            <div class="location-name">Urwa</div>
+            <div class="location-sub">4 sensors · updated 4 min ago</div>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <span class="status-chip" style="background: rgba(232,201,74,0.12); color: var(--aqi-moderate);">
+            <span class="status-chip-dot" style="background: var(--aqi-moderate);"></span>MODERATE
+          </span>
+          <span class="location-aqi">58</span>
+          <svg class="expand-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+      </button>
+      <div class="expand-body">
+        <div class="expand-body-inner">
+          <div class="detail-stat"><span class="detail-stat-label">PM2.5</span><span class="detail-stat-value">19.5 µg/m³</span></div>
+          <div class="detail-stat"><span class="detail-stat-label">PM10</span><span class="detail-stat-value">33.1 µg/m³</span></div>
+          <div class="detail-stat"><span class="detail-stat-label">Temperature</span><span class="detail-stat-value">28.1 °C</span></div>
+          <div class="detail-stat"><span class="detail-stat-label">Humidity</span><span class="detail-stat-value">72 %</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card expand-item">
+      <button class="expand-head">
+        <div class="expand-head-left">
+          <div>
+            <div class="location-name">Bejai</div>
+            <div class="location-sub">3 sensors · updated 2 min ago</div>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <span class="status-chip" style="background: rgba(232,201,74,0.12); color: var(--aqi-moderate);">
+            <span class="status-chip-dot" style="background: var(--aqi-moderate);"></span>MODERATE
+          </span>
+          <span class="location-aqi">65</span>
+          <svg class="expand-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+      </button>
+      <div class="expand-body">
+        <div class="expand-body-inner">
+          <div class="detail-stat"><span class="detail-stat-label">PM2.5</span><span class="detail-stat-value">21.9 µg/m³</span></div>
+          <div class="detail-stat"><span class="detail-stat-label">PM10</span><span class="detail-stat-value">37.4 µg/m³</span></div>
+          <div class="detail-stat"><span class="detail-stat-label">Temperature</span><span class="detail-stat-value">28.6 °C</span></div>
+          <div class="detail-stat"><span class="detail-stat-label">Humidity</span><span class="detail-stat-value">70 %</span></div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <footer class="footer">
+    <span class="footer-text">AERIS Air Intelligence · Mock environmental data · Mangaluru Region</span>
+    <div class="footer-links">
+      <a href="index.html" class="footer-link">Overview</a>
+      <a href="map.html" class="footer-link">Map</a>
+      <a href="devices.html" class="footer-link">Devices</a>
+    </div>
+  </footer>
+
+</main>
+
+<script>window.__aerisInitGauge = false;</script>
+<script src="script.js"></script>
+</body>
+</html>
