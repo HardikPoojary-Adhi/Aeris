@@ -48,14 +48,16 @@ const char* AP_PASSWORD = "12345678";
 
 // -------------------- FIRESTORE --------------------
 
+// -------------------- FIRESTORE --------------------
+
 const char* FIRESTORE_URL =
   "https://firestore.googleapis.com/v1/projects/"
-  "aeris-8af63/databases/(default)/documents/devices/device_01";
+  "aeris-e4168/databases/(default)/documents/devices/device_01";
 
 // -------------------- DASHBOARD --------------------
 
 const char* DASHBOARD_URL =
-  "https://hardikpoojary-adhi.github.io/Aeris-demo/index.html";
+  "https://hardikpoojary-adhi.github.io/Aeris/index.html";
 
 // -------------------- WIFI --------------------
 
