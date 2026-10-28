@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#060a10" />
+
+  <title>Support | AERIS Air Intelligence</title>
+  <meta
+    name="description"
+    content="Contact AERIS for technical support, project collaboration, and air quality monitoring enquiries."
+  />
+
+  <link rel="icon" type="image/png" href="logo.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* =========================================
+       AERIS SUPPORT PAGE
+       Uses existing AERIS design tokens.
+       ========================================= */
+
+    .support-page {
+      padding-bottom: 44px;
+    }
+
+    .support-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+      gap: 30px;
+      align-items: stretch;
+      margin-top: 30px;
+    }
+
+    .support-intro {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
+      padding: clamp(12px, 2.5vw, 32px) 0;
+    }
+
+    .support-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      color: var(--cyan);
+      font: 600 11px var(--mono);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .support-eyebrow::before {
+      content: "";
+      width: 26px;
+      height: 1px;
+      background: var(--cyan);
+      box-shadow: 0 0 10px rgba(53, 214, 229, 0.55);
+    }
+
+    .support-title {
+      max-width: 680px;
+      margin: 0;
+      color: var(--text);
+      font-size: clamp(38px, 5.2vw, 68px);
+      font-weight: 800;
+      letter-spacing: -2.8px;
+      line-height: 1.08;
+    }
+
+    .support-title span {
+      color: var(--cyan);
+      text-shadow: 0 0 32px rgba(53, 214, 229, 0.17);
+    }
+
+    .support-description {
+      max-width: 560px;
+      margin: 22px 0 30px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .support-highlights {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .support-highlight {
+      position: relative;
+      min-height: 145px;
+      overflow: hidden;
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: linear-gradient(
+        145deg,
+        rgba(18, 35, 51, 0.8),
+        rgba(7, 14, 24, 0.68)
+      );
+      transition:
+        border-color 0.22s ease,
+        transform 0.22s ease,
+        background 0.22s ease;
+    }
+
+    .support-highlight:hover {
+      transform: translateY(-3px);
+      border-color: rgba(53, 214, 229, 0.4);
+      background: linear-gradient(
+        145deg,
+        rgba(21, 45, 61, 0.9),
+        rgba(7, 14, 24, 0.78)
+      );
+    }
+
+    .support-highlight::after {
+      position: absolute;
+      right: -25px;
+      bottom: -35px;
+      width: 90px;
+      height: 90px;
+      border: 1px solid rgba(53, 214, 229, 0.09);
+      border-radius: 50%;
+      content: "";
+      pointer-events: none;
+    }
+
+    .support-highlight-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .support-highlight-icon {
+      display: grid;
+      width: 36px;
+      height: 36px;
+      place-items: center;
+      border: 1px solid rgba(53, 214, 229, 0.23);
+      border-radius: 10px;
+      background: rgba(53, 214, 229, 0.07);
+      color: var(--cyan);
+      font: 600 16px var(--mono);
+    }
+
+    .support-highlight-index {
+      color: var(--faint);
+      font: 500 10px var(--mono);
+      letter-spacing: 1px;
+    }
+
+    .support-highlight h2 {
+      margin: 0 0 8px;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .support-highlight p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    /* Contact form panel */
+
+    .support-form-card {
+      position: relative;
+      align-self: stretch;
+      min-width: 0;
+      overflow: hidden;
+      padding: clamp(22px, 3vw, 36px);
+      border: 1px solid rgba(148, 178, 209, 0.2);
+      border-radius: 22px;
+      background: linear-gradient(
+        150deg,
+        rgba(15, 28, 43, 0.92),
+        rgba(7, 13, 23, 0.88)
+      );
+      box-shadow:
+        0 24px 70px rgba(0, 0, 0, 0.23),
+        inset 0 1px 0 rgba(255, 255, 255, 0.035);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+    }
+
+    .support-form-card::before {
+      position: absolute;
+      top: 0;
+      left: 30px;
+      width: 90px;
+      height: 2px;
+      background: var(--cyan);
+      box-shadow: 0 0 20px rgba(53, 214, 229, 0.5);
+      content: "";
+    }
+
+    .support-form-heading {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .support-form-heading h2 {
+      margin: 0;
+      color: var(--text);
+      font-size: clamp(23px, 2.4vw, 30px);
+      font-weight: 800;
+      letter-spacing: -0.9px;
+    }
+
+    .support-form-heading p {
+      margin: 9px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .support-form-tag {
+      flex-shrink: 0;
+      padding: 7px 10px;
+      border: 1px solid rgba(53, 214, 229, 0.24);
+      border-radius: 8px;
+      background: rgba(53, 214, 229, 0.06);
+      color: var(--cyan);
+      font: 500 9px var(--mono);
+      letter-spacing: 1px;
+    }
+
+    .support-form {
+      display: flex;
+      flex-direction: column;
+      gap: 19px;
+    }
+
+    .support-field {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      min-width: 0;
+    }
+
+    .support-field label {
+      color: #d6e1ec;
+      font: 600 11px var(--mono);
+      letter-spacing: 0.45px;
+    }
+
+    .support-field input,
+    .support-field textarea {
+      display: block;
+      width: 100%;
+      min-width: 0;
+      border: 1px solid rgba(148, 178, 209, 0.17);
+      border-radius: 11px;
+      outline: none;
+      background: rgba(3, 9, 17, 0.56);
+      color: var(--text);
+      font: 500 12px var(--ui);
+      transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .support-field input {
+      height: 47px;
+      padding: 0 14px;
+    }
+
+    .support-field textarea {
+      min-height: 145px;
+      padding: 14px;
+      line-height: 1.8;
+      resize: vertical;
+    }
+
+    .support-field input::placeholder,
+    .support-field textarea::placeholder {
+      color: #63758a;
+    }
+
+    .support-field input:focus,
+    .support-field textarea:focus {
+      border-color: rgba(53, 214, 229, 0.7);
+      background: rgba(5, 15, 24, 0.86);
+      box-shadow: 0 0 0 3px rgba(53, 214, 229, 0.07);
+    }
+
+    .support-field input:focus-visible,
+    .support-field textarea:focus-visible,
+    .support-submit:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 3px;
+    }
+
+    .support-form-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 2px;
+    }
+
+    .support-submit {
+      display: flex;
+      width: 100%;
+      min-height: 49px;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      border: 1px solid rgba(53, 214, 229, 0.48);
+      border-radius: 11px;
+      background: linear-gradient(
+        110deg,
+        rgba(53, 214, 229, 0.17),
+        rgba(53, 214, 229, 0.07)
+      );
+      color: var(--cyan);
+      font: 700 11px var(--mono);
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .support-submit:hover {
+      transform: translateY(-1px);
+      border-color: var(--cyan);
+      background: rgba(53, 214, 229, 0.14);
+    }
+
+    .support-submit-arrow {
+      font-size: 17px;
+      transition: transform 0.2s ease;
+    }
+
+    .support-submit:hover .support-submit-arrow {
+      transform: translateX(4px);
+    }
+
+    .support-form-note {
+      margin: 0;
+      color: var(--faint);
+      font-size: 10px;
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    .support-form-note span {
+      color: var(--cyan);
+    }
+
+    .support-toast {
+      display: none;
+      padding: 13px 15px;
+      margin-bottom: 18px;
+      border: 1px solid rgba(53, 214, 229, 0.25);
+      border-radius: 10px;
+      background: rgba(53, 214, 229, 0.07);
+      color: var(--text);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .support-toast.is-visible {
+      display: block;
+    }
+
+    .support-toast.is-error {
+      border-color: rgba(255, 150, 150, 0.28);
+      background: rgba(255, 100, 100, 0.06);
+    }
+
+    .support-footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 35px;
+      padding-top: 22px;
+      border-top: 1px solid var(--border);
+    }
+
+    .support-footer p {
+      margin: 0;
+      color: var(--faint);
+      font-size: 10px;
+      line-height: 1.8;
+    }
+
+    .support-footer-brand {
+      color: var(--muted) !important;
+      font: 600 10px var(--mono);
+      letter-spacing: 1.5px;
+    }
+
+    .support-footer-brand span {
+      color: var(--cyan);
+    }
+
+    @media (max-width: 980px) {
+      .support-hero {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+      }
+
+      .support-intro {
+        padding-top: 12px;
+      }
+
+      .support-title {
+        max-width: 700px;
+      }
+
+      .support-description {
+        max-width: 650px;
+      }
+
+      .support-form-card {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .support-page {
+        padding-bottom: 25px;
+      }
+
+      .support-hero {
+        margin-top: 18px;
+        gap: 22px;
+      }
+
+      .support-intro {
+        padding: 12px 0 0;
+      }
+
+      .support-title {
+        font-size: clamp(36px, 10vw, 52px);
+        letter-spacing: -1.8px;
+      }
+
+      .support-description {
+        margin: 17px 0 22px;
+        font-size: 12px;
+      }
+
+      .support-highlights {
+        gap: 10px;
+      }
+
+      .support-highlight {
+        min-height: 148px;
+        padding: 15px;
+        border-radius: 13px;
+      }
+
+      .support-highlight h2 {
+        font-size: 12px;
+      }
+
+      .support-highlight p {
+        font-size: 10px;
+      }
+
+      .support-highlight-icon {
+        width: 32px;
+        height: 32px;
+      }
+
+      .support-form-card {
+        padding: 22px 17px;
+        border-radius: 17px;
+      }
+
+      .support-form-heading {
+        gap: 10px;
+      }
+
+      .support-form-tag {
+        padding: 6px 7px;
+        font-size: 8px;
+      }
+
+      .support-form {
+        gap: 17px;
+      }
+
+      .support-footer {
+        margin-top: 25px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .support-highlight,
+      .support-submit,
+      .support-submit-arrow {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- AERIS background video -->
+  <video class="bg-video" autoplay muted loop playsinline aria-hidden="true">
+    <source src="bgVid.mp4" type="video/mp4" />
+  </video>
+  <div class="bg-video-overlay"></div>
+
+  <!-- AERIS navigation -->
+  <nav class="nav" id="mainNav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand" aria-label="AERIS dashboard">
+        <svg
+          class="brand-mark"
+          viewBox="0 0 32 32"
+          fill="none"
+          aria-hidden="true"
+        >
+          <circle
+            cx="16"
+            cy="16"
+            r="14.5"
+            stroke="#35D6E5"
+            stroke-width="1.4"
+            opacity=".35"
+          />
+          <circle
+            cx="16"
+            cy="16"
+            r="9.5"
+            stroke="#35D6E5"
+            stroke-width="1.4"
+            opacity=".6"
+          />
+          <circle cx="16" cy="16" r="3.2" fill="#35D6E5" />
+        </svg>
+
+        <span class="brand-text">
+          <span class="brand-name">AERIS</span>
+          <span class="brand-sub">AIR INTELLIGENCE</span>
+        </span>
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="location.html">Location</a>
+        <a href="support.html" class="active" aria-current="page">
+          Support
+        </a>
+      </div>
+
+      <div class="nav-meta">
+        <span class="nav-clock" data-live-clock></span>
+        <div class="nav-status-pill">
+          <span class="dot-live"></span>
+          <span class="status-label" data-status>Support</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="shell support-page">
+    <section class="support-hero" aria-labelledby="supportTitle">
+
+      <!-- Introduction and highlights -->
+      <div class="support-intro">
+        <div class="support-eyebrow">AERIS / SUPPORT CENTER</div>
+
+        <h1 class="support-title" id="supportTitle">
+          Let's make<br />
+          air <span>intelligence</span><br />
+          better.
+        </h1>
+
+        <p class="support-description">
+          Have a technical question, spotted an issue, or want to collaborate
+          on a project? Get in touch with the AERIS team. We're here to help
+          you make the most of smarter air quality monitoring.
+        </p>
+
+        <div class="support-highlights">
+          <article class="support-highlight">
+            <div class="support-highlight-top">
+              <div class="support-highlight-icon" aria-hidden="true">↗</div>
+              <span class="support-highlight-index">01 / HELP</span>
+            </div>
+            <h2>Fast Response</h2>
+            <p>
+              Share your question clearly so the team can understand what
+              you need.
+            </p>
+          </article>
+
+          <article class="support-highlight">
+            <div class="support-highlight-top">
+              <div class="support-highlight-icon" aria-hidden="true">⌘</div>
+              <span class="support-highlight-index">02 / TECH</span>
+            </div>
+            <h2>Technical Support</h2>
+            <p>
+              Questions about sensor readings, the dashboard, or your AERIS
+              setup? Let us know.
+            </p>
+          </article>
+
+          <article class="support-highlight">
+            <div class="support-highlight-top">
+              <div class="support-highlight-icon" aria-hidden="true">⌁</div>
+              <span class="support-highlight-index">03 / BUILD</span>
+            </div>
+            <h2>Project &amp; Collaboration</h2>
+            <p>
+              Explore ideas, discuss improvements, and connect with the team
+              about potential projects.
+            </p>
+          </article>
+
+          <article class="support-highlight">
+            <div class="support-highlight-top">
+              <div class="support-highlight-icon" aria-hidden="true">◎</div>
+              <span class="support-highlight-index">04 / CONTACT</span>
+            </div>
+            <h2>Contact Information</h2>
+            <p>
+              Use the contact form to send your enquiry through the planned
+              AERIS support system.
+            </p>
+          </article>
+        </div>
+      </div>
+
+      <!-- Contact form -->
+      <section class="support-form-card" aria-labelledby="formTitle">
+        <div class="support-form-heading">
+          <div>
+            <h2 id="formTitle">Send us a message</h2>
+            <p>
+              Tell us what's on your mind.<br />
+              Fields marked with * are required.
+            </p>
+          </div>
+
+          <span class="support-form-tag">CONTACT / 01</span>
+        </div>
+
+        <div
+          class="support-toast"
+          id="supportToast"
+          role="status"
+          aria-live="polite"
+        ></div>
+
+        <form class="support-form" id="supportForm">
+          <div class="support-field">
+            <label for="supportName">FULL NAME *</label>
+            <input
+              type="text"
+              id="supportName"
+              name="name"
+              placeholder="Enter your name"
+              autocomplete="name"
+              maxlength="100"
+              required
+            />
+          </div>
+
+          <div class="support-field">
+            <label for="supportEmail">EMAIL ADDRESS *</label>
+            <input
+              type="email"
+              id="supportEmail"
+              name="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              maxlength="254"
+              required
+            />
+          </div>
+
+          <!-- Editable subject: users can type anything -->
+          <div class="support-field">
+            <label for="supportSubject">SUBJECT *</label>
+            <input
+              type="text"
+              id="supportSubject"
+              name="subject"
+              placeholder="What is this about?"
+              maxlength="200"
+              required
+            />
+          </div>
+
+          <div class="support-field">
+            <label for="supportMessage">MESSAGE *</label>
+            <textarea
+              id="supportMessage"
+              name="message"
+              placeholder="Describe your question, issue, or idea..."
+              maxlength="5000"
+              required
+            ></textarea>
+          </div>
+
+          <div class="support-form-bottom">
+            <button class="support-submit" type="submit">
+              <span>SEND MESSAGE</span>
+              <span class="support-submit-arrow" aria-hidden="true">→</span>
+            </button>
+
+            <p class="support-form-note">
+              <span>●</span>
+              Secure message storage and email confirmation will be enabled
+              when the backend is connected.
+            </p>
+          </div>
+        </form>
+      </section>
+    </section>
+
+    <footer class="support-footer">
+      <p>
+        AERIS — Smart Air Quality Index &amp; Monitoring System
+      </p>
+      <p class="support-footer-brand">
+        BUILT FOR <span>BETTER AIR</span>
+      </p>
+    </footer>
+  </main>
+
+  <script>
+    (() => {
+      const nav = document.getElementById("mainNav");
+      const clock = document.querySelector("[data-live-clock]");
+      const form = document.getElementById("supportForm");
+      const toast = document.getElementById("supportToast");
+
+      // Update the navbar clock.
+      function updateClock() {
+        if (!clock) return;
+
+        clock.textContent = new Intl.DateTimeFormat("en-IN", {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false
+        }).format(new Date());
+      }
+
+      // Match the existing navbar's scrolled appearance.
+      function updateNavigation() {
+        if (nav) {
+          nav.classList.toggle("is-scrolled", window.scrollY > 12);
+        }
+      }
+
+      updateClock();
+      updateNavigation();
+
+      window.setInterval(updateClock, 15000);
+
+      window.addEventListener("scroll", updateNavigation, {
+        passive: true
+      });
+
+      // Backend is not connected yet.
+      // Never claim a message was saved or emailed when it wasn't.
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        toast.classList.remove("is-error");
+        toast.classList.add("is-visible", "is-error");
+
+        toast.textContent =
+          "The contact form is not connected yet. Your message has NOT been sent or saved. Firebase and email confirmation still need to be configured.";
+
+        toast.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest"
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

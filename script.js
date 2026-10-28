@@ -805,3 +805,18 @@ document.addEventListener(
 
   }
 );
+
+/* ============================================================
+   BACKGROUND VIDEO
+   ============================================================ */
+
+const bgVideo = document.querySelector(".bg-video");
+
+if (bgVideo) {
+  bgVideo.muted = true;
+  bgVideo.playsInline = true;
+  
+  bgVideo.play().catch((error) => {
+    console.log("AERIS: Background video autoplay blocked.", error);
+  });
+}
