@@ -10,7 +10,7 @@
 
 const FIRESTORE_URL =
   "https://firestore.googleapis.com/v1/projects/" +
-  "aeris-8af63/databases/(default)/documents/" +
+  "aeris-e4168/databases/(default)/documents/" +
   "devices/device_01";
 
 const REFRESH_INTERVAL = 5000;

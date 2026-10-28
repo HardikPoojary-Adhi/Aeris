@@ -4,12 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>About AERIS — Air Intelligence</title>
+  <title>About AERIS — SAQIMS | Air Intelligence</title>
 
   <meta
     name="description"
-    content="Learn about AERIS, a smart air quality monitoring system that transforms environmental data into meaningful insights."
+    content="Discover AERIS (SAQIMS), an Industrial IoT smart air quality monitoring system, its technology, and the creators behind the project."
   >
+
+  <meta name="theme-color" content="#060a10">
 
   <link rel="icon" type="image/png" href="logo.png">
 
@@ -22,6 +24,35 @@
   >
 
   <link rel="stylesheet" href="style.css">
+
+  <!-- About-page-specific layout fixes -->
+  <style>
+    .about-hero {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .about-hero-copy {
+      width: 100%;
+      max-width: 850px;
+    }
+
+    .about-creators-note {
+      margin-top: 24px;
+      color: var(--faint);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 680px) {
+      .about-hero {
+        min-height: auto;
+        padding-top: 56px;
+        padding-bottom: 70px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -42,7 +73,7 @@
   <div class="bg-video-overlay"></div>
 
 
-  <!-- NAVIGATION — MATCHES INDEX.HTML -->
+  <!-- NAVIGATION -->
 
   <nav class="nav" id="mainNav">
 
@@ -89,14 +120,15 @@
 
       </a>
 
-
       <div class="nav-links">
 
         <a href="index.html">Home</a>
 
-        <a href="about.html" class="active" aria-current="page">
-          About
-        </a>
+        <a
+          href="about.html"
+          class="active"
+          aria-current="page"
+        >About</a>
 
         <a href="location.html">Location</a>
 
@@ -104,17 +136,13 @@
 
       </div>
 
-
       <div class="nav-meta">
 
         <span class="nav-clock" data-live-clock></span>
 
         <div class="nav-status-pill">
           <span class="dot-live"></span>
-
-          <span class="status-label" data-status>
-            Connecting
-          </span>
+          <span class="status-label">SYSTEM INFO</span>
         </div>
 
       </div>
@@ -131,7 +159,7 @@
     <div class="about-page">
 
 
-      <!-- HERO -->
+      <!-- HERO / PROJECT IDENTITY -->
 
       <section class="about-hero">
 
@@ -139,7 +167,7 @@
 
           <div class="about-kicker">
             <span></span>
-            ABOUT AERIS / AIR INTELLIGENCE
+            SAQIMS / AERIS
           </div>
 
           <h1>
@@ -149,21 +177,23 @@
           </h1>
 
           <p class="about-hero-lead">
-            AERIS is a smart air quality monitoring system designed to make
-            environmental data accessible, understandable, and meaningful.
-            By combining sensor technology, connected data infrastructure,
-            and real-time visualisation, AERIS brings essential environmental
-            readings into one unified interface, helping users better
-            understand the air around them and make informed decisions.
+            AERIS — Smart Air Quality Index &amp; Monitoring
+            System (SAQIMS) — is an Industrial Internet of
+            Things (IIoT) project designed to make environmental
+            monitoring more accessible and understandable.
+            Using connected sensors, an ESP32-based monitoring
+            device, and a cloud-connected dashboard, AERIS
+            collects and presents environmental readings through
+            a unified interface, helping users observe air quality
+            conditions and interpret available data.
           </p>
 
         </div>
 
-
       </section>
 
 
-      <!-- ABOUT THE SYSTEM -->
+      <!-- 01 / THE SYSTEM -->
 
       <section class="about-section" id="system">
 
@@ -174,7 +204,7 @@
         <div class="about-section-body">
 
           <p class="about-eyebrow">
-            PURPOSE & APPROACH
+            PURPOSE &amp; APPROACH
           </p>
 
           <h2>
@@ -182,16 +212,18 @@
           </h2>
 
           <p>
-            Environmental conditions can change throughout the day, and
-            understanding those changes starts with having access to useful
-            information. AERIS brings air quality measurements and
-            environmental readings together in a clear monitoring interface.
+            Environmental conditions can change throughout the
+            day, and understanding those changes starts with
+            having access to useful information. AERIS brings
+            air quality measurements and environmental readings
+            together in a clear monitoring interface.
           </p>
 
           <p>
-            Built around connected sensors and a cloud-backed data system,
-            AERIS is designed to make collected readings easier to access,
-            interpret, and monitor over time.
+            SAQIMS is built around connected sensing hardware
+            and a cloud-backed data system. It is designed to
+            make collected readings easier to access, interpret,
+            and monitor through a central dashboard.
           </p>
 
         </div>
@@ -199,7 +231,7 @@
       </section>
 
 
-      <!-- HOW IT WORKS -->
+      <!-- 02 / HOW IT WORKS -->
 
       <section class="about-section" id="how-it-works">
 
@@ -218,17 +250,18 @@
           </h2>
 
           <p>
-            AERIS uses environmental sensors connected to an ESP32-based
-            monitoring device to collect readings such as particulate
-            matter, temperature, humidity, and gas sensor values.
-            The device communicates available data to Firebase Firestore,
-            where the connected dashboard can retrieve and display it.
+            AERIS uses an ESP32-based monitoring device connected
+            to environmental sensors. The hardware includes an
+            SDS011 particulate matter sensor, a DHT22 temperature
+            and humidity sensor, and MQ-series gas sensors.
           </p>
 
           <p>
-            This approach brings the sensing hardware and digital
-            monitoring interface into one connected system, making
-            environmental readings easier to review in a single place.
+            The device sends available readings to Firebase
+            Firestore, where the connected web dashboard can
+            retrieve and display the data. This links physical
+            sensor measurements with a digital monitoring
+            interface.
           </p>
 
         </div>
@@ -236,7 +269,7 @@
       </section>
 
 
-      <!-- MONITORING APPROACH -->
+      <!-- 03 & 04 / MONITORING APPROACH -->
 
       <section class="about-intent">
 
@@ -251,10 +284,11 @@
           </h2>
 
           <p>
-            Individual sensor readings become more useful when presented
-            with context. AERIS organises available measurements into
-            readable values and visual indicators to help users understand
-            monitored conditions.
+            Individual sensor readings become more useful when
+            presented clearly. AERIS organises available
+            measurements into readable values and visual
+            indicators to help users understand monitored
+            environmental conditions.
           </p>
 
         </div>
@@ -270,10 +304,11 @@
           </h2>
 
           <p>
-            A connected dashboard provides a central place to review
-            device readings and environmental conditions. AERIS aims
-            to make monitoring straightforward without requiring users
-            to interpret raw sensor output on their own.
+            A connected web dashboard provides a central place
+            to review device readings and environmental
+            conditions. The goal is to make monitoring
+            straightforward without requiring users to interpret
+            raw sensor output on their own.
           </p>
 
         </div>
@@ -281,7 +316,7 @@
       </section>
 
 
-      <!-- TECHNOLOGY -->
+      <!-- 05 / TECHNOLOGY -->
 
       <section class="about-section" id="technology">
 
@@ -308,16 +343,16 @@
               </div>
 
               <div>
-                <h3>ESP32 & environmental sensors</h3>
+                <h3>ESP32 &amp; environmental sensors</h3>
 
                 <p>
-                  The device combines an ESP32 with sensors for particulate
-                  matter, temperature, humidity, and gas-related readings.
+                  The monitoring device combines an ESP32 with
+                  sensors for particulate matter, temperature,
+                  humidity, and gas-related measurements.
                 </p>
               </div>
 
             </div>
-
 
             <div class="about-tech-row">
 
@@ -329,13 +364,13 @@
                 <h3>Firebase Firestore</h3>
 
                 <p>
-                  A cloud-hosted data layer connects the monitoring device
-                  with the dashboard and stores available device readings.
+                  The cloud-hosted database connects the
+                  monitoring device with the dashboard and
+                  stores available device readings.
                 </p>
               </div>
 
             </div>
-
 
             <div class="about-tech-row">
 
@@ -347,9 +382,9 @@
                 <h3>A unified monitoring dashboard</h3>
 
                 <p>
-                  A web-based interface presents collected readings,
-                  device information, and environmental indicators
-                  in an organised format.
+                  The web interface presents collected readings,
+                  device information, and environmental
+                  indicators in an organised format.
                 </p>
               </div>
 
@@ -362,15 +397,94 @@
       </section>
 
 
-      <!-- AQI CONTEXT -->
+      <!-- 06 / THE CREATORS -->
 
-      <section class="about-aqi">
+      <section class="about-section" id="creators">
 
-        <div class="about-aqi-mark">
-          AQI
+        <div class="about-section-index">
+          06 / THE CREATORS
         </div>
 
-        <div>
+        <div class="about-section-body">
+
+          <p class="about-eyebrow">
+            THE PEOPLE BEHIND AERIS
+          </p>
+
+          <h2>
+            Built by curiosity. Driven by innovation.
+          </h2>
+
+          <p>
+            AERIS is an innovation project developed through
+            experimentation with embedded systems, environmental
+            sensing, and connected software. The project brings
+            together hardware and web technology in a unified
+            air quality monitoring system.
+          </p>
+
+          <div class="about-tech-list">
+
+            <!-- MAIN CREATOR -->
+
+            <div class="about-tech-row">
+
+              <div class="about-tech-type">
+                MAIN CREATOR
+              </div>
+
+              <div>
+                <h3>4DH1</h3>
+
+                <p>
+                  Original creator and project lead behind AERIS,
+                  driving the project's core vision and overall
+                  development.
+                </p>
+              </div>
+
+            </div>
+
+            <!-- CO-CREATORS -->
+
+            <div class="about-tech-row">
+
+              <div class="about-tech-type">
+                CO-CREATORS
+              </div>
+
+              <div>
+                <h3>Delvin &amp; Dhruvith</h3>
+
+                <p>
+                  Co-creators who collaborate on the project
+                  and contribute to its development and
+                  innovation efforts.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+          <p class="about-creators-note">
+            AERIS / SAQIMS — AN ELECTROBOT INNOVATION PROJECT
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- 07 / AIR QUALITY CONTEXT -->
+
+      <section class="about-section" id="air-quality">
+
+        <div class="about-section-index">
+          07 / AIR QUALITY
+        </div>
+
+        <div class="about-section-body">
 
           <p class="about-eyebrow">
             ENVIRONMENTAL AWARENESS
@@ -381,12 +495,19 @@
           </h2>
 
           <p>
-            Air quality monitoring can help people become more aware of
-            environmental conditions and changes in the air around them.
-            AERIS presents collected measurements to support awareness
-            and informed interpretation. Sensor readings are intended
-            for monitoring purposes and should not be treated as a
-            substitute for certified reference measurements or medical advice.
+            Air quality monitoring can help people become more
+            aware of environmental conditions and changes in
+            the air around them. AERIS presents collected
+            measurements to support awareness and informed
+            interpretation.
+          </p>
+
+          <p>
+            Sensor readings are intended for monitoring and
+            educational purposes. They should not be treated
+            as a substitute for certified reference
+            measurements, official air quality advisories,
+            or medical advice.
           </p>
 
         </div>
@@ -398,9 +519,11 @@
 
       <footer class="about-footer">
 
-        <span>AERIS / AIR INTELLIGENCE</span>
+        <span>AERIS / SAQIMS</span>
 
-        <p>Environmental data. Clearer perspectives.</p>
+        <p>
+          Environmental data. Clearer perspectives.
+        </p>
 
         <a href="index.html">
           BACK TO DASHBOARD <span>→</span>
@@ -436,14 +559,22 @@
       function updateNav() {
         if (!nav) return;
 
-        nav.classList.toggle("is-scrolled", window.scrollY > 8);
+        nav.classList.toggle(
+          "is-scrolled",
+          window.scrollY > 8
+        );
       }
 
       updateClock();
       updateNav();
 
       window.setInterval(updateClock, 1000);
-      window.addEventListener("scroll", updateNav, { passive: true });
+
+      window.addEventListener(
+        "scroll",
+        updateNav,
+        { passive: true }
+      );
     })();
   </script>
 

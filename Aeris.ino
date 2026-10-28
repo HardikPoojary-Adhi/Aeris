@@ -1,3 +1,6 @@
+#include <ArduinoJson.h>
+#include "secrets.h"
+#include "google_root_ca.h"
 #include <WiFi.h>
 #include <WiFiClientSecure.h>
 #include <HTTPClient.h>
