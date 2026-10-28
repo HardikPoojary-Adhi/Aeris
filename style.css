@@ -1,15 +1,33 @@
+/* ============================================================
+   POLLUTANT PANEL OVERRIDES
+   ============================================================ */
+
 .pollutant-panel {
   justify-content: space-evenly !important;
   gap: 28px !important;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
 }
 
 .pollutant-row {
   min-height: 92px;
   padding: 0 4px 28px;
   gap: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+
+.pollutant-row:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
 }
 
 .pollutant-label-group {
+  display: flex;
+  flex-direction: column;
   gap: 7px;
 }
 
@@ -21,23 +39,29 @@
 
 .pollutant-sub {
   font-size: 12.5px !important;
+  color: var(--faint);
 }
 
 .pollutant-value-group {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
   gap: 6px;
 }
 
 .pollutant-value {
   font-size: 32px !important;
   color: var(--text);
+  font-family: var(--mono);
+  font-weight: 700;
 }
 
-<<<<<<< HEAD
-:root {
-  --bg: #060a10;
-  --surface: rgba(8,17,28,.72);
-  --border: rgba(148,178,209,.14);
-=======
+.pollutant-unit,
+.metric-unit {
+  font-size: 12px;
+  color: var(--faint);
+}
+
 
 /* ============================================================
    ROOT VARIABLES
@@ -47,28 +71,20 @@
   --bg: #060a10;
   --surface: rgba(8, 17, 28, 0.72);
   --border: rgba(148, 178, 209, 0.14);
->>>>>>> 808656b18ab8b39ef5fa58f48f944637090f930e
   --text: #e7edf5;
   --muted: #9fb0c3;
   --faint: #6b7c90;
   --cyan: #35d6e5;
   --good: #4ad991;
-<<<<<<< HEAD
-=======
-
->>>>>>> 808656b18ab8b39ef5fa58f48f944637090f930e
   --mono: "JetBrains Mono", monospace;
   --ui: "Manrope", sans-serif;
 }
 
-<<<<<<< HEAD
-=======
 
 /* ============================================================
    GLOBAL
    ============================================================ */
 
->>>>>>> 808656b18ab8b39ef5fa58f48f944637090f930e
 * {
   box-sizing: border-box;
   margin: 0;
@@ -82,34 +98,24 @@ html {
 
 body {
   font-family: var(--ui);
-<<<<<<< HEAD
-  background: linear-gradient(180deg,#08111c,var(--bg));
-=======
   background: linear-gradient(180deg, #08111c, var(--bg));
->>>>>>> 808656b18ab8b39ef5fa58f48f944637090f930e
   color: var(--text);
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-<<<<<<< HEAD
-=======
 
 /* ============================================================
    BACKGROUND VIDEO
    ============================================================ */
 
->>>>>>> 808656b18ab8b39ef5fa58f48f944637090f930e
 .bg-video,
 .bg-video-overlay {
   position: fixed;
   inset: 0;
   width: 100%;
   height: 100%;
-<<<<<<< HEAD
   pointer-events: none;
-=======
->>>>>>> 808656b18ab8b39ef5fa58f48f944637090f930e
 }
 
 .bg-video {
@@ -121,13 +127,6 @@ body {
   z-index: -2;
   background: linear-gradient(
     180deg,
-<<<<<<< HEAD
-    rgba(3,8,15,.72),
-    rgba(5,13,23,.82)
-  );
-}
-
-=======
     rgba(3, 8, 15, 0.72),
     rgba(5, 13, 23, 0.82)
   );
@@ -138,22 +137,12 @@ body {
    NAVIGATION
    ============================================================ */
 
->>>>>>> 808656b18ab8b39ef5fa58f48f944637090f930e
 .nav {
   position: sticky;
   top: 0;
   z-index: 10;
   height: 68px;
   border-bottom: 1px solid transparent;
-<<<<<<< HEAD
-  transition: .2s;
-}
-
-.nav.is-scrolled {
-  background: rgba(8,14,22,.82);
-  backdrop-filter: blur(14px);
-  border-color: rgba(53,214,229,.35);
-=======
   transition: 0.2s;
 }
 
@@ -161,7 +150,6 @@ body {
   background: rgba(8, 14, 22, 0.82);
   backdrop-filter: blur(14px);
   border-color: rgba(53, 214, 229, 0.35);
->>>>>>> 808656b18ab8b39ef5fa58f48f944637090f930e
 }
 
 .nav-inner,
@@ -179,14 +167,11 @@ body {
   gap: 24px;
 }
 
-<<<<<<< HEAD
-=======
 
 /* ============================================================
    BRAND
    ============================================================ */
 
->>>>>>> 808656b18ab8b39ef5fa58f48f944637090f930e
 .brand {
   display: flex;
   align-items: center;
@@ -209,30 +194,21 @@ body {
 .brand-name {
   font-weight: 800;
   font-size: 16px;
-<<<<<<< HEAD
-  letter-spacing: .06em;
-=======
   letter-spacing: 0.06em;
->>>>>>> 808656b18ab8b39ef5fa58f48f944637090f930e
 }
 
 .brand-sub {
   font-size: 9.5px;
-<<<<<<< HEAD
-  letter-spacing: .16em;
-=======
   letter-spacing: 0.16em;
->>>>>>> 808656b18ab8b39ef5fa58f48f944637090f930e
   color: var(--faint);
   margin-top: 3px;
   font-weight: 600;
 }
 
 
-<<<<<<< HEAD
-/* =========================================================
-   NAVIGATION LINKS
-   ========================================================= */
+/* ============================================================
+   NAVIGATION LINKS & NAV META
+   ============================================================ */
 
 .nav-links {
   display: flex;
@@ -245,7 +221,7 @@ body {
   text-decoration: none;
   font-size: 12px;
   font-weight: 700;
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .nav-links a:hover {
@@ -255,16 +231,6 @@ body {
 .nav-links a.active {
   color: var(--cyan);
 }
-
-
-/* =========================================================
-   NAV META
-   ========================================================= */
-=======
-/* ============================================================
-   NAV META
-   ============================================================ */
->>>>>>> 808656b18ab8b39ef5fa58f48f944637090f930e
 
 .nav-meta,
 .freshness {
@@ -285,11 +251,7 @@ body {
   padding: 7px 12px;
   border: 1px solid var(--border);
   border-radius: 999px;
-<<<<<<< HEAD
-  background: rgba(16,28,44,.78);
-=======
   background: rgba(16, 28, 44, 0.78);
->>>>>>> 808656b18ab8b39ef5fa58f48f944637090f930e
   font-size: 11.5px;
   color: var(--muted);
 }
@@ -300,24 +262,16 @@ body {
   height: 7px;
   border-radius: 50%;
   background: var(--good);
-<<<<<<< HEAD
-  box-shadow: 0 0 0 3px rgba(74,217,145,.16);
-}
-
-.shell {
-  padding: clamp(24px,4vw,56px) 32px 64px;
-=======
   box-shadow: 0 0 0 3px rgba(74, 217, 145, 0.16);
 }
 
 
 /* ============================================================
-   LAYOUT
+   LAYOUT & HEADINGS
    ============================================================ */
 
 .shell {
   padding: clamp(24px, 4vw, 56px) 32px 64px;
->>>>>>> 808656b18ab8b39ef5fa58f48f944637090f930e
 }
 
 .page-head {
@@ -334,11 +288,7 @@ body {
 .section-title {
   font-size: 12px;
   font-weight: 700;
-<<<<<<< HEAD
-  letter-spacing: .1em;
-=======
   letter-spacing: 0.1em;
->>>>>>> 808656b18ab8b39ef5fa58f48f944637090f930e
   color: var(--faint);
 }
 
@@ -361,17 +311,9 @@ body {
   font-weight: 600;
 }
 
-<<<<<<< HEAD
-.dashboard-grid {
-  display: grid;
-  grid-template-columns: 1.15fr .85fr;
-  gap: 20px;
-}
-
-=======
 
 /* ============================================================
-   DASHBOARD GRID
+   DASHBOARD GRID & CARDS
    ============================================================ */
 
 .dashboard-grid {
@@ -380,28 +322,11 @@ body {
   gap: 20px;
 }
 
-
-/* ============================================================
-   CARDS
-   ============================================================ */
-
->>>>>>> 808656b18ab8b39ef5fa58f48f944637090f930e
 .card {
   background: var(--surface);
   backdrop-filter: blur(14px);
   border: 1px solid var(--border);
   border-radius: 18px;
-<<<<<<< HEAD
-  box-shadow: 0 8px 24px -8px rgba(0,0,0,.45);
-  transition: border-color .2s, transform .2s;
-}
-
-.card:hover {
-  border-color: rgba(53,214,229,.35);
-  transform: translateY(-2px);
-}
-
-=======
   box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.45);
   transition: border-color 0.2s, transform 0.2s;
 }
@@ -416,7 +341,6 @@ body {
    AQI HERO
    ============================================================ */
 
->>>>>>> 808656b18ab8b39ef5fa58f48f944637090f930e
 .hero-aqi {
   padding: 48px;
   display: flex;
@@ -447,11 +371,7 @@ body {
 }
 
 .hero-number {
-<<<<<<< HEAD
-  font: 700 96px/.9 var(--mono);
-=======
   font: 700 96px / 0.9 var(--mono);
->>>>>>> 808656b18ab8b39ef5fa58f48f944637090f930e
 }
 
 .hero-scale {
@@ -501,14 +421,11 @@ body {
   color: var(--muted);
 }
 
-<<<<<<< HEAD
-=======
 
 /* ============================================================
    GAUGE
    ============================================================ */
 
->>>>>>> 808656b18ab8b39ef5fa58f48f944637090f930e
 .gauge-wrap {
   width: 240px;
   height: 150px;
@@ -521,77 +438,11 @@ body {
   overflow: visible;
 }
 
-<<<<<<< HEAD
-=======
 
 /* ============================================================
-   POLLUTANT PANEL
+   ENVIRONMENTAL SECTION & METRIC CARDS
    ============================================================ */
 
->>>>>>> 808656b18ab8b39ef5fa58f48f944637090f930e
-.pollutant-panel {
-  padding: 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.pollutant-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--border);
-  gap: 16px;
-}
-
-.pollutant-row:last-child {
-  border-bottom: 0;
-  padding-bottom: 0;
-}
-
-.pollutant-label-group {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.pollutant-label {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--muted);
-}
-
-.pollutant-sub {
-  font-size: 11.5px;
-  color: var(--faint);
-}
-
-.pollutant-value-group {
-  text-align: right;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.pollutant-value {
-  font: 700 24px var(--mono);
-}
-
-.pollutant-unit,
-.metric-unit {
-  font-size: 12px;
-  color: var(--faint);
-}
-
-<<<<<<< HEAD
-=======
-
-/* ============================================================
-   ENVIRONMENTAL SECTION
-   ============================================================ */
-
->>>>>>> 808656b18ab8b39ef5fa58f48f944637090f930e
 .section {
   margin-top: 48px;
 }
@@ -603,22 +454,10 @@ body {
 
 .metric-grid {
   display: grid;
-<<<<<<< HEAD
-  grid-template-columns: repeat(4,minmax(0,1fr));
-  gap: 16px;
-}
-
-=======
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
 }
 
-
-/* ============================================================
-   METRIC CARDS
-   ============================================================ */
-
->>>>>>> 808656b18ab8b39ef5fa58f48f944637090f930e
 .metric-card {
   padding: 24px;
   display: flex;
@@ -655,14 +494,11 @@ body {
   font: 700 26px var(--mono);
 }
 
-<<<<<<< HEAD
-=======
 
 /* ============================================================
    FOOTER
    ============================================================ */
 
->>>>>>> 808656b18ab8b39ef5fa58f48f944637090f930e
 .footer {
   margin-top: 96px;
   padding: 24px 0;
@@ -679,104 +515,9 @@ body {
 }
 
 
-<<<<<<< HEAD
-@media(max-width:980px) {
-=======
 /* ============================================================
-   RESPONSIVE
-   ============================================================ */
-
-@media (max-width: 980px) {
->>>>>>> 808656b18ab8b39ef5fa58f48f944637090f930e
-
-  .dashboard-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .metric-grid {
-<<<<<<< HEAD
-    grid-template-columns: repeat(2,minmax(0,1fr));
-=======
-    grid-template-columns: repeat(2, minmax(0, 1fr));
->>>>>>> 808656b18ab8b39ef5fa58f48f944637090f930e
-  }
-
-}
-
-
-<<<<<<< HEAD
-@media(max-width:680px) {
-=======
-@media (max-width: 680px) {
->>>>>>> 808656b18ab8b39ef5fa58f48f944637090f930e
-
-  .nav-inner,
-  .shell {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  .nav-clock {
-    display: none;
-  }
-
-  .status-label {
-    display: none;
-  }
-
-  .hero-aqi {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 24px;
-  }
-
-  .hero-number {
-    font-size: 72px;
-  }
-
-  .gauge-wrap {
-    align-self: center;
-    width: 220px;
-    height: 138px;
-  }
-
-  .hero-foot {
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-
-  .pollutant-panel {
-    padding: 24px;
-  }
-
-  .metric-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .page-head {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .footer {
-    margin-top: 64px;
-  }
-
-<<<<<<< HEAD
-  .nav-links {
-    gap: 14px;
-  }
-
-  .nav-links a {
-    font-size: 11px;
-  }
-
-}
-
-
-/* =========================================================
    ABOUT PAGE
-   ========================================================= */
+   ============================================================ */
 
 .about-shell {
   padding-top: 0;
@@ -786,12 +527,12 @@ body {
   min-height: 610px;
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(250px, .65fr);
+  grid-template-columns: minmax(0, 1.35fr) minmax(250px, 0.65fr);
   align-items: center;
   gap: 64px;
   padding: 76px 0 108px;
   border-bottom: 1px solid var(--border);
-  animation: about-enter .8s ease both;
+  animation: about-enter 0.8s ease both;
 }
 
 .about-hero-copy {
@@ -807,7 +548,7 @@ body {
 .about-footer > span,
 .about-footer > a {
   font: 600 11px var(--mono);
-  letter-spacing: .08em;
+  letter-spacing: 0.08em;
   color: var(--cyan);
 }
 
@@ -826,7 +567,7 @@ body {
 
 .about-hero h1 {
   font-size: 88px;
-  line-height: .98;
+  line-height: 0.98;
   font-weight: 800;
   letter-spacing: 0;
 }
@@ -846,9 +587,9 @@ body {
 
 .about-signal {
   align-self: center;
-  border-top: 1px solid rgba(53,214,229,.32);
-  border-bottom: 1px solid rgba(53,214,229,.32);
-  background: linear-gradient(110deg, rgba(8,17,28,.4), rgba(8,17,28,.12));
+  border-top: 1px solid rgba(53, 214, 229, 0.32);
+  border-bottom: 1px solid rgba(53, 214, 229, 0.32);
+  background: linear-gradient(110deg, rgba(8, 17, 28, 0.4), rgba(8, 17, 28, 0.12));
   backdrop-filter: blur(8px);
 }
 
@@ -897,7 +638,7 @@ body {
   color: var(--faint);
   text-decoration: none;
   font: 500 9px var(--mono);
-  letter-spacing: .08em;
+  letter-spacing: 0.08em;
 }
 
 .about-scroll i {
@@ -965,7 +706,7 @@ body {
 
 .about-intent-item {
   padding-top: 23px;
-  border-top: 1px solid rgba(53,214,229,.4);
+  border-top: 1px solid rgba(53, 214, 229, 0.4);
 }
 
 .about-intent h2 {
@@ -982,7 +723,7 @@ body {
 
 .about-pipeline li {
   display: grid;
-  grid-template-columns: 44px minmax(180px, .8fr) minmax(0, 1fr);
+  grid-template-columns: 44px minmax(180px, 0.8fr) minmax(0, 1fr);
   align-items: center;
   gap: 18px;
   min-height: 72px;
@@ -1045,7 +786,7 @@ body {
 }
 
 .about-aqi-mark {
-  color: rgba(53,214,229,.16);
+  color: rgba(53, 214, 229, 0.16);
   font: 700 48px var(--mono);
 }
 
@@ -1085,20 +826,40 @@ body {
   margin-left: 5px;
 }
 
+
+/* ============================================================
+   KEYFRAMES
+   ============================================================ */
+
 @keyframes about-enter {
   from { opacity: 0; transform: translateY(14px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes about-line {
-  0%, 100% { transform: scaleX(.55); opacity: .5; }
+  0%, 100% { transform: scaleX(0.55); opacity: 0.5; }
   50% { transform: scaleX(1); opacity: 1; }
 }
 
-@media(max-width: 900px) {
+
+/* ============================================================
+   RESPONSIVE MEDIA QUERIES
+   ============================================================ */
+
+@media (max-width: 980px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .metric-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
   .about-hero {
     min-height: 560px;
-    grid-template-columns: minmax(0, 1.2fr) minmax(220px, .8fr);
+    grid-template-columns: minmax(0, 1.2fr) minmax(220px, 0.8fr);
     gap: 36px;
   }
 
@@ -1113,7 +874,67 @@ body {
   }
 }
 
-@media(max-width: 680px) {
+@media (max-width: 680px) {
+  .nav-inner,
+  .shell {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .nav-clock {
+    display: none;
+  }
+
+  .status-label {
+    display: none;
+  }
+
+  .hero-aqi {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+  }
+
+  .hero-number {
+    font-size: 72px;
+  }
+
+  .gauge-wrap {
+    align-self: center;
+    width: 220px;
+    height: 138px;
+  }
+
+  .hero-foot {
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .pollutant-panel {
+    padding: 24px;
+  }
+
+  .metric-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .page-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .footer {
+    margin-top: 64px;
+  }
+
+  .nav-links {
+    gap: 14px;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+  }
+
   .about-page .nav-meta {
     display: none;
   }
@@ -1192,11 +1013,9 @@ body {
   }
 }
 
-@media(prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce) {
   .about-hero,
   .about-scroll i {
     animation: none;
   }
-=======
->>>>>>> 808656b18ab8b39ef5fa58f48f944637090f930e
 }
