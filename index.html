@@ -35,6 +35,7 @@
   >
 
   <link rel="stylesheet" href="style.css" />
+  <script src="navigation.js" defer></script>
 </head>
 
 <body>
@@ -142,6 +143,18 @@
 
       </div>
 
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="site-nav-links"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
 
       <div class="nav-meta">
 
@@ -151,9 +164,6 @@
         ></span>
 
         <div class="nav-status-pill">
-
-          <span class="dot-live"></span>
-
           <span
             class="status-label"
             data-status
@@ -198,9 +208,6 @@
 
 
       <div class="freshness">
-
-        <span class="dot-live"></span>
-
         Last synchronized
 
         <strong data-last-updated>
@@ -257,8 +264,6 @@
             class="hero-status"
             data-aqi-status
           >
-
-            <span class="hero-status-dot"></span>
 
             <span data-aqi-label>
               CONNECTING

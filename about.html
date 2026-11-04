@@ -24,6 +24,7 @@
   >
 
   <link rel="stylesheet" href="style.css">
+  <script src="navigation.js" defer></script>
 
   <!-- About-page-specific layout fixes -->
   <style>
@@ -136,12 +137,23 @@
 
       </div>
 
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="site-nav-links"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
       <div class="nav-meta">
 
         <span class="nav-clock" data-live-clock></span>
 
         <div class="nav-status-pill">
-          <span class="dot-live"></span>
           <span class="status-label">SYSTEM INFO</span>
         </div>
 
