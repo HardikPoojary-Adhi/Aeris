@@ -502,6 +502,17 @@ body {
   color: #4c5b6d;
 }
 
+.footer-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-link:hover,
+.footer-link:focus-visible {
+  color: var(--cyan);
+}
+
 
 /* ============================================================
    ABOUT PAGE
