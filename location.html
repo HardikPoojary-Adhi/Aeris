@@ -1,50 +1,546 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#060a10">
-    <title>Location | AERIS Air Intelligence</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script src="navigation.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- =========================================================
+       SEO & PAGE METADATA
+       ========================================================= -->
+
+  <title>AERIS - Device Locations | Air Intelligence</title>
+
+  <meta
+    name="description"
+    content="Explore registered AERIS air quality monitoring devices, their assigned locations, connectivity status, and latest environmental readings."
+  />
+
+  <meta name="author" content="AERIS - Hardik Poojary" />
+  <meta
+    name="keywords"
+    content="AERIS, device locations, IoT devices, AQI monitoring, air quality monitoring, ESP32"
+  />
+
+  <meta name="robots" content="index, follow" />
+
+  <meta
+    property="og:title"
+    content="AERIS - Device Locations"
+  />
+
+  <meta
+    property="og:description"
+    content="Explore registered AERIS monitoring devices and their live status."
+  />
+
+  <meta property="og:type" content="website" />
+
+  <meta
+    property="og:url"
+    content="https://hardikpoojary-adhi.github.io/Aeris/location.html"
+  />
+
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" type="image/png" href="logo-tab.png" />
+
+  <!-- =========================================================
+       FONTS
+       ========================================================= -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- =========================================================
+       STYLESHEETS & SHARED NAVIGATION
+       ========================================================= -->
+
+  <link rel="stylesheet" href="style.css" />
+
+  <script src="navigation.js" defer></script>
+
 </head>
+
 <body>
-    <nav class="nav" id="mainNav" aria-label="Main navigation">
-        <div class="nav-inner">
-            <a href="index.html" class="brand" aria-label="AERIS dashboard">
-                <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-                    <circle cx="16" cy="16" r="14.5" stroke="#35D6E5" stroke-width="1.4" opacity=".35" />
-                    <circle cx="16" cy="16" r="9.5" stroke="#35D6E5" stroke-width="1.4" opacity=".6" />
-                    <circle cx="16" cy="16" r="3.2" fill="#35D6E5" />
-                </svg>
-                <span class="brand-text">
-                    <span class="brand-name">AERIS</span>
-                    <span class="brand-sub">AIR INTELLIGENCE</span>
-                </span>
-            </a>
-            <div class="nav-links" id="site-nav-links">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="location.html" class="active" aria-current="page">Location</a>
-                <a href="support.html">Support</a>
-            </div>
-            <button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-nav-links">
-                <span></span><span></span><span></span>
-            </button>
+
+  <!-- =========================================================
+       BACKGROUND
+       ========================================================= -->
+
+  <video
+    class="bg-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    aria-hidden="true"
+  >
+    <source src="bgVid.mp4" type="video/mp4" />
+  </video>
+
+  <div class="bg-video-overlay"></div>
+
+
+  <!-- =========================================================
+       NAVIGATION
+       ========================================================= -->
+
+  <nav class="nav" id="mainNav">
+
+    <div class="nav-inner">
+
+      <!-- AERIS BRAND -->
+
+      <a
+        href="index.html"
+        class="brand"
+        aria-label="AERIS dashboard"
+      >
+        <img
+          src="nameLogo.png"
+          alt=""
+          class="brand-logo"
+        />
+      </a>
+
+
+      <!-- NAVIGATION LINKS -->
+
+      <div class="nav-links">
+
+        <a href="index.html">
+          Home
+        </a>
+
+        <a href="about.html">
+          About
+        </a>
+
+        <a href="location.html" class="active" aria-current="page">
+          Location
+        </a>
+
+        <a href="support.html">
+          Support
+        </a>
+
+      </div>
+
+
+      <!-- MOBILE NAVIGATION TOGGLE -->
+
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="site-nav-links"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+
+      <!-- NAVIGATION META -->
+
+      <div class="nav-meta">
+
+        <span
+          class="nav-clock"
+          data-live-clock
+        ></span>
+
+        <div class="nav-status-pill">
+
+          <span class="status-label">
+            DEVICE DIRECTORY
+          </span>
+
         </div>
-    </nav>
-    <main class="shell">
-        <h1 class="region-title">Location</h1>
-        <p>This page is still being developed. Thank you for your patience.</p>
-        <p><a href="index.html">Back to Home</a></p>
-    </main>
-    <footer class="footer shell">
-        <span class="footer-text">
-            AERIS Air Intelligence · Live environmental data · Built by Hardik Poojary &amp; Dhruvith (<a href="https://github.com/HardikPoojary-Adhi" class="footer-link">github.com/HardikPoojary-Adhi</a>)
+
+      </div>
+
+    </div>
+
+  </nav>
+
+
+
+  <!-- =========================================================
+       MAIN CONTENT
+       ========================================================= -->
+
+  <main class="shell location-page">
+
+
+    <!-- =======================================================
+         PAGE HEADER
+         ======================================================= -->
+
+    <header class="page-head location-header">
+
+      <div class="location-heading-content">
+
+        <div class="region-eyebrow">
+          AERIS MONITORING · DEVICE NETWORK
+        </div>
+
+        <h1 class="region-title">
+          Device Locations
+        </h1>
+
+        <p class="location-description">
+          Explore registered AERIS monitoring devices, their
+          assigned locations, and current connectivity.
+        </p>
+
+      </div>
+
+
+      <!-- REFRESH INFORMATION -->
+
+      <div class="freshness location-refresh-info">
+
+        <span>
+          Last synchronized
         </span>
+
+        <strong id="lastSynchronized">
+          --
+        </strong>
+
+        <div class="location-refresh-indicator">
+
+          <span class="location-refresh-dot"></span>
+
+          <span>
+            Auto-refresh every 5 seconds
+          </span>
+
+        </div>
+
+      </div>
+
+    </header>
+
+
+
+    <!-- =======================================================
+         DEVICE OVERVIEW
+         ======================================================= -->
+
+    <section
+      class="location-overview"
+      aria-label="Device network overview"
+    >
+
+      <!-- TOTAL DEVICES -->
+
+      <article class="card metric-card location-stat-card">
+
+        <div class="metric-top">
+
+          <div class="metric-label">
+            Total Devices
+          </div>
+
+          <div class="metric-icon">
+            #
+          </div>
+
+        </div>
+
+        <div class="metric-value-row">
+
+          <span
+            class="metric-value"
+            id="totalDevices"
+          >
+            --
+          </span>
+
+        </div>
+
+      </article>
+
+
+      <!-- ONLINE DEVICES -->
+
+      <article class="card metric-card location-stat-card">
+
+        <div class="metric-top">
+
+          <div class="metric-label">
+            Online Devices
+          </div>
+
+          <div class="metric-icon">
+            +
+          </div>
+
+        </div>
+
+        <div class="metric-value-row">
+
+          <span
+            class="metric-value"
+            id="onlineDevices"
+          >
+            --
+          </span>
+
+        </div>
+
+      </article>
+
+
+      <!-- OFFLINE DEVICES -->
+
+      <article class="card metric-card location-stat-card">
+
+        <div class="metric-top">
+
+          <div class="metric-label">
+            Offline Devices
+          </div>
+
+          <div class="metric-icon">
+            -
+          </div>
+
+        </div>
+
+        <div class="metric-value-row">
+
+          <span
+            class="metric-value"
+            id="offlineDevices"
+          >
+            --
+          </span>
+
+        </div>
+
+      </article>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         DEVICE DIRECTORY
+         ======================================================= -->
+
+    <section
+      class="location-directory"
+      aria-labelledby="locationDirectoryTitle"
+    >
+
+      <!-- SECTION HEADING -->
+
+      <div class="location-section-heading">
+
+        <div>
+
+          <div class="section-title">
+            MONITORING NETWORK
+          </div>
+
+          <h2 id="locationDirectoryTitle">
+            Registered Devices
+          </h2>
+
+          <p>
+            Select a device to view its location and sensor data.
+          </p>
+
+        </div>
+
+
+        <div
+          class="location-device-count"
+          id="deviceCountLabel"
+        >
+          -- DEVICES
+        </div>
+
+      </div>
+
+
+
+      <!-- DEVICE LIST CONTAINER -->
+
+      <div
+        class="location-device-list"
+        id="deviceList"
+        aria-live="polite"
+      >
+
+
+        <!-- LOADING STATE -->
+
+        <div
+          class="location-state"
+          id="locationLoading"
+        >
+
+          <div class="location-loader"></div>
+
+          <p>
+            Connecting to the AERIS network...
+          </p>
+
+          <span>
+            Fetching registered devices
+          </span>
+
+        </div>
+
+
+        <!-- ERROR STATE -->
+
+        <div
+          class="location-state location-error"
+          id="locationError"
+          hidden
+        >
+
+          <div class="location-state-icon">
+            !
+          </div>
+
+          <h3>
+            Unable to load devices
+          </h3>
+
+          <p id="locationErrorMessage">
+            Something went wrong while retrieving device information.
+          </p>
+
+          <button
+            type="button"
+            class="location-retry-button"
+            id="retryLocationFetch"
+          >
+            Try Again
+          </button>
+
+        </div>
+
+
+        <!-- EMPTY STATE -->
+
+        <div
+          class="location-state"
+          id="locationEmpty"
+          hidden
+        >
+
+          <div class="location-state-icon">
+            --
+          </div>
+
+          <h3>
+            No devices registered
+          </h3>
+
+          <p>
+            Registered monitoring devices will appear here once
+            they are connected to the AERIS database.
+          </p>
+
+        </div>
+
+
+        <!--
+          DEVICE ROWS ARE GENERATED BY location.js.
+
+          Each device row should contain:
+          - Assigned location
+          - AQI
+          - Device ID
+          - Expand/collapse indicator
+
+          Expanded content should contain:
+          - Location
+          - Connectivity status
+          - Last updated timestamp
+          - Available Firestore sensor fields
+          - Device ID at the bottom
+
+          Only one device should remain expanded at a time.
+        -->
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         LOCATION INFORMATION
+         ======================================================= -->
+
+    <section class="location-footer-info">
+
+      <div class="location-info-content">
+
+        <div class="location-info-title">
+          ABOUT DEVICE LOCATIONS
+        </div>
+
+        <p>
+          Device locations represent manually assigned installation
+          locations. They are not GPS coordinates or live tracking data.
+        </p>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         FOOTER
+         ======================================================= -->
+
+    <footer class="footer">
+
+      <span class="footer-text">
+        AERIS Air Intelligence · Live environmental data · Built by
+        Hardik Poojary &amp; Dhruvith
+        (<a
+          href="https://github.com/HardikPoojary-Adhi"
+          class="footer-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >github.com/HardikPoojary-Adhi</a>)
+      </span>
+
     </footer>
+
+
+  </main>
+
+
+
+  <!-- =========================================================
+       LOCATION PAGE JAVASCRIPT
+
+       IMPORTANT:
+       Do NOT load script.js here.
+       This page has its own location.js.
+       ========================================================= -->
+
+  <script src="location.js?v=1"></script>
+
 </body>
 </html>

@@ -1,4 +1,11 @@
 document.querySelectorAll(".nav").forEach((nav) => {
+  const updateScrolledState = () => {
+    nav.classList.toggle("is-scrolled", window.scrollY > 8);
+  };
+
+  window.addEventListener("scroll", updateScrolledState, { passive: true });
+  updateScrolledState();
+
   const toggle = nav.querySelector(".nav-toggle");
   const links = nav.querySelector(".nav-links");
 
