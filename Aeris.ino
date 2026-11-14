@@ -51,6 +51,12 @@ String savedLocation = "";
 
 bool wifiConnected = false;
 
+// New Wi-Fi configuration is processed after the HTTP response
+// has been sent, preventing the browser from timing out.
+bool wifiConnectionPending = false;
+String pendingSSID = "";
+String pendingPassword = "";
+
 // -------------------- SENSOR VALUES --------------------
 float pm25 = 0.0;
 float pm10 = 0.0;
@@ -186,7 +192,7 @@ void startSetupAP() {
   Serial.println();
   Serial.println("Starting ESP32 setup hotspot...");
 
-  WiFi.disconnect(true, false);
+  WiFi.disconnect(false, false);
   delay(500);
 
   WiFi.mode(WIFI_AP_STA);
@@ -232,14 +238,16 @@ void stopWiFiStation() {
 
   Serial.println("Stopping previous Wi-Fi connection...");
 
-  WiFi.disconnect(true, false);
-  delay(700);
+  // Disconnect only the station interface.
+  // Do not turn off the ESP32 Wi-Fi radio because the setup AP
+  // must remain available during provisioning.
+  WiFi.disconnect(false, false);
+  delay(300);
 
   WiFi.mode(WIFI_AP_STA);
   delay(300);
 
   if (WiFi.softAPIP() == IPAddress(0, 0, 0, 0)) {
-
     WiFi.softAP(AP_SSID, AP_PASSWORD, 1, false, 4);
     delay(300);
   }
@@ -361,7 +369,7 @@ bool connectWiFi(String ssid, String password) {
 
   printWiFiStatus();
 
-  WiFi.disconnect(true, false);
+  WiFi.disconnect(false, false);
   delay(500);
 
   WiFi.mode(WIFI_AP_STA);
@@ -722,215 +730,49 @@ void handleConnect() {
     return;
   }
 
+  if (wifiConnectionPending) {
+    server.send(
+      409,
+      "text/html",
+      "<h2>A Wi-Fi configuration is already being processed. Please wait.</h2>"
+    );
+    return;
+  }
+
   Serial.println();
   Serial.println("===== NEW DEVICE CONFIGURATION =====");
+
+  Serial.print("SSID: ");
+  Serial.println(ssid);
 
   Serial.print("Location: ");
   Serial.println(location);
 
-  bool success = connectWiFi(ssid, password);
+  // Save first so the configuration is not lost if the network
+  // connection fails. The user can retry without re-entering it.
+  saveWiFiCredentials(ssid, password, location);
 
-  if (success) {
+  pendingSSID = ssid;
+  pendingPassword = password;
+  wifiConnectionPending = true;
 
-    // SAVE ONLY AFTER SUCCESSFUL WIFI CONNECTION
-    saveWiFiCredentials(ssid, password, location);
+  // Prevent the normal reconnect timer from immediately starting
+  // a second connection attempt.
+  lastWiFiReconnectAttempt = millis();
 
-    String ip = WiFi.localIP().toString();
-
-    String html = R"rawliteral(
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>AERIS — Connected</title>
-
-<style>
-
-body {
-  margin: 0;
-  min-height: 100vh;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 20px;
-
-  background: #050a12;
-  color: #edfaff;
-
-  font-family: Arial, sans-serif;
-}
-
-.card {
-  max-width: 520px;
-  width: 100%;
-
-  padding: 32px;
-  text-align: center;
-
-  background: #0b1726;
-
-  border: 1px solid rgba(53,214,229,.18);
-  border-radius: 20px;
-}
-
-.logo {
-  color: #35d6e5;
-  font-size: 30px;
-  font-weight: bold;
-  letter-spacing: 5px;
-}
-
-.success {
-  font-size: 50px;
-  color: #55e6a5;
-  margin: 20px;
-}
-
-.info {
-  margin: 15px 0;
-  padding: 13px;
-
-  background: #07111d;
-  border-radius: 10px;
-
-  color: #35d6e5;
-  overflow-wrap: anywhere;
-}
-
-a {
-  display: block;
-  margin-top: 20px;
-  padding: 15px;
-
-  background: #35d6e5;
-  color: #031016;
-
-  text-decoration: none;
-  border-radius: 12px;
-
-  font-weight: bold;
-}
-
-</style>
-</head>
-
-<body>
-
-<div class="card">
-
-<div class="logo">AERIS</div>
-
-<div class="success">✓</div>
-
-<h1>Connection Established</h1>
-
-<p>
-Your AERIS monitoring device is now
-connected and ready for cloud synchronization.
-</p>
-
-<div class="info" id="location"></div>
-
-<div class="info" id="ip"></div>
-
-<a href="https://hardikpoojary-adhi.github.io/Aeris-demo/index.html">
-Open AERIS Dashboard →
-</a>
-
-</div>
-
-<script>
-
-const params = new URLSearchParams(
-  window.location.search
-);
-
-document.getElementById("location").textContent =
-  "Device Location: " + (params.get("location") || "");
-
-document.getElementById("ip").textContent =
-  "Device IP: " + (params.get("ip") || "");
-
-</script>
-
-</body>
-</html>
-)rawliteral";
-
-    // Build the response using URL-encoded values.
-    // This avoids injecting user-entered location into HTML.
-    auto encode = [](const String& value) {
-      const char hex[] = "0123456789ABCDEF";
-      String result;
-
-      for (size_t i = 0; i < value.length(); i++) {
-        uint8_t c = (uint8_t)value[i];
-
-        if (
-          (c >= 'a' && c <= 'z') ||
-          (c >= 'A' && c <= 'Z') ||
-          (c >= '0' && c <= '9') ||
-          c == '-' || c == '_' || c == '.' || c == '~'
-        ) {
-          result += (char)c;
-        } else {
-          result += '%';
-          result += hex[c >> 4];
-          result += hex[c & 0x0F];
-        }
-      }
-
-      return result;
-    };
-
-    // Pass location and IP to the success page.
-    html.replace(
-      "<body>",
-      "<body><script>"
-      "const p=new URLSearchParams(window.location.search);"
-      "</script>"
-    );
-
-    // Simpler: replace the page placeholders directly
-    // using URL-encoded query parameters.
-    String redirect =
-      "<!DOCTYPE html><html><head>"
-      "<meta name='viewport' content='width=device-width,initial-scale=1'>"
-      "<title>AERIS Connected</title></head>"
-      "<body style='background:#050a12;color:#edfaff;"
-      "font-family:Arial;text-align:center;padding:40px'>"
-      "<h1 style='color:#35d6e5'>AERIS</h1>"
-      "<h2>Connection Established ✓</h2>"
-      "<p>Device location: " + escapeJsonString(location) + "</p>"
-      "<p>Device IP: " + ip + "</p>"
-      "<a style='color:#35d6e5' href='" +
-      String(DASHBOARD_URL) +
-      "'>Open AERIS Dashboard</a>"
-      "</body></html>";
-
-    server.send(200, "text/html", redirect);
-
-    // Start NTP synchronization.
-    configTime(19800, 0, "pool.ntp.org", "time.nist.gov");
-
-    return;
-  }
-
+  // Respond before starting the potentially long Wi-Fi connection.
   server.send(
     200,
     "text/html",
     R"rawliteral(
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-<title>AERIS — Connection Failed</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AERIS — Configuration Saved</title>
 <style>
+* { box-sizing: border-box; }
 body {
   margin: 0;
   min-height: 100vh;
@@ -943,38 +785,59 @@ body {
   font-family: Arial, sans-serif;
 }
 .card {
-  max-width: 480px;
   width: 100%;
+  max-width: 480px;
   padding: 30px;
   text-align: center;
   background: #0b1726;
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(53,214,229,.18);
   border-radius: 18px;
+}
+.logo {
+  color: #35d6e5;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 4px;
+}
+.status {
+  margin: 24px 0 12px;
+  color: #35d6e5;
+  font-size: 18px;
+  font-weight: bold;
 }
 p {
   color: #8298aa;
   line-height: 1.6;
 }
-button {
-  margin-top: 15px;
-  padding: 13px 20px;
-  border: none;
+.note {
+  margin-top: 20px;
+  padding: 13px;
   border-radius: 10px;
-  background: #35d6e5;
-  color: #031016;
-  font-weight: bold;
+  background: rgba(53,214,229,.06);
+  color: #a8bdca;
+  font-size: 13px;
+}
+a {
+  display: inline-block;
+  margin-top: 20px;
+  color: #35d6e5;
 }
 </style>
 </head>
 <body>
 <div class="card">
-<h1>Connection Failed</h1>
-<p>
-The ESP32 could not connect to the provided
-Wi-Fi network. Check the network name and
-password and try again.
-</p>
-<button onclick="location.href='/'">Try Again</button>
+  <div class="logo">AERIS</div>
+  <div class="status">Configuration Saved</div>
+  <h2>Connecting to your network</h2>
+  <p>
+    Your Wi-Fi details and device location have been saved.
+    AERIS is now attempting to connect to the network.
+  </p>
+  <div class="note">
+    Keep this setup page open for a moment. The ESP32 setup
+    hotspot may remain available after the connection attempt.
+  </div>
+  <a href="/">Return to device setup</a>
 </div>
 </body>
 </html>
@@ -1537,6 +1400,21 @@ void loop() {
   server.handleClient();
 
   checkResetButton();
+
+  // Process a newly submitted Wi-Fi configuration only after the
+  // HTTP response has been sent to the browser.
+  if (wifiConnectionPending) {
+
+    wifiConnectionPending = false;
+
+    Serial.println();
+    Serial.println("Processing new Wi-Fi configuration...");
+
+    connectWiFi(pendingSSID, pendingPassword);
+
+    pendingSSID = "";
+    pendingPassword = "";
+  }
 
   // SENSOR READING
   if (
